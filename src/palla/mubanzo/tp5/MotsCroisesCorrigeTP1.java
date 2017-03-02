@@ -19,6 +19,7 @@ public class MotsCroisesCorrigeTP1 implements SpecifMotsCroises
         {
             for (int col=1; col<=getLargeur(); col++)
             {
+                proposition.getCellule(lig, col).set(" ");
                 setCaseNoire(lig, col, true);
             }
         }
@@ -120,6 +121,18 @@ public class MotsCroisesCorrigeTP1 implements SpecifMotsCroises
         {
             vertical.setCellule(lig, col, def) ;
         }
+    }
+
+    public StringProperty propositionProperty(int lig, int col){
+        assert coordCorrectes(lig, col) ;
+        assert !estCaseNoire(lig, col) ;
+        return proposition.getCellule(lig, col);
+    }
+
+    public void reveler(int ligne, int colonne){
+        assert coordCorrectes(ligne, colonne) ;
+        assert !estCaseNoire(ligne, colonne) ;
+        this.proposition.getCellule(ligne, colonne).set(this.solution.getCellule(ligne, colonne).toString());
     }
 
     @Override
