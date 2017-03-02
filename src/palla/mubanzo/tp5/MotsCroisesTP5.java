@@ -2,14 +2,14 @@ package palla.mubanzo.tp5;
 
 import javafx.beans.property.StringProperty;
 
-public class MotsCroisesCorrigeTP1 implements SpecifMotsCroises
+public class MotsCroisesTP5 implements SpecifMotsCroises
 {
     public Grille<Character> solution ;
     private Grille<StringProperty> proposition ;
     private Grille<String> horizontal ;
     private Grille<String> vertical ;
 
-    public MotsCroisesCorrigeTP1(int hauteur, int largeur)
+    public MotsCroisesTP5(int hauteur, int largeur)
     {
         solution = new Grille<Character> (hauteur, largeur) ;
         proposition = new Grille<StringProperty> (hauteur, largeur) ;
