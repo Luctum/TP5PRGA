@@ -16,14 +16,14 @@ public class ChargerGrille{
     }
 
     public static Connection connectionMySQL() throws SQLException{
-        String url = "jdbc:mysql://anteros.istic.univ-rennes1.fr/base_bousse";
+        String url = "jdbc:mysql://localhost/base_bousse";
         try{
             Class.forName("com.mysql.jdbc.Driver");
         }catch(ClassNotFoundException e){
             e.printStackTrace();
         }
         
-        return DriverManager.getConnection(url, "user_123456789", "xxxx");
+        return DriverManager.getConnection(url, "root", "");
     }
 
     public static MotsCroisesTP5 extraireBD(Connection connect, int grille){
@@ -31,7 +31,7 @@ public class ChargerGrille{
         String req2= "SELECT * FROM TP5_MOT WHERE num_grille ="+grille;
 
         try{
-            //Récupère les données utiles de grille.
+            //Récupère les données utiles de grille. (Hauteur, Largeur)
             Statement statement = connect.createStatement();
             ResultSet resultatGrille = statement.executeQuery(req);
             resultatGrille.next();
@@ -39,15 +39,18 @@ public class ChargerGrille{
             int largeur = resultatGrille.getInt("largeur");
             MotsCroisesTP5 mc = new MotsCroisesTP5(hauteur, largeur);
 
-            //Récupère les données utiles de mot.
+            //Récupère les données de la grille
             ResultSet resultatMot = statement.executeQuery(req2);
-            Boolean horizontal = resultatMot.getBoolean("horizontal");
-            int colonne = resultatMot.getInt("colonne");
-            int ligne = resultatMot.getInt("ligne");
-            String solution = resultatMot.getString("solution");
 
-            //Insière chaque définition au bon endroit
+            //Insère chaque définition au bon endroit
             while(resultatMot.next()){
+
+                //Récupère les données utiles de mot.
+                Boolean horizontal = resultatMot.getBoolean("horizontal");
+                int colonne = resultatMot.getInt("colonne");
+                int ligne = resultatMot.getInt("ligne");
+                String solution = resultatMot.getString("solution");
+
                 mc.setDefinition(
                         ligne,
                         colonne,
@@ -69,12 +72,14 @@ public class ChargerGrille{
 
             }
             return mc;
+
         }catch(SQLException e){
             e.printStackTrace();
         }
         //Si ca ne fonctionne pas...
         return null;
     }
+
 
     public static final int CHOIX_GRILLE = 10;
     public MotsCroisesTP5 extraireGrille(){

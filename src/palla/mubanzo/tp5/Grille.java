@@ -32,9 +32,9 @@ public class Grille<T> {
         String s = "";
         for(int i = 1; i <= getHauteur(); i++ ){
             for(int j = 1; j <= getLargeur()-1; j++){
-                s += i + "," + j  + "|";
+                s += getCellule(i,j) + "|";
             }
-            s += i + "," + getLargeur() + "\n";
+            s += getCellule(i,getLargeur()) + "|" + "\n";
         }
 
         return s;

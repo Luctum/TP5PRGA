@@ -1,5 +1,6 @@
 package palla.mubanzo.tp5;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class MotsCroisesTP5 implements SpecifMotsCroises
@@ -19,7 +20,7 @@ public class MotsCroisesTP5 implements SpecifMotsCroises
         {
             for (int col=1; col<=getLargeur(); col++)
             {
-                proposition.getCellule(lig, col).set(" ");
+                proposition.setCellule(lig,col,new SimpleStringProperty(" "));
                 setCaseNoire(lig, col, true);
             }
         }
