@@ -1,4 +1,4 @@
-package palla.mubanzo.tp5;
+package palla.mubanzo.tp5.back;
 
 public interface SpecifMotsCroises
 {

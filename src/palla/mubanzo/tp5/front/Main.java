@@ -1,4 +1,4 @@
-package sample;
+package palla.mubanzo.tp5.front;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +10,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Parent root = FXMLLoader.load(getClass().getResource("vueTP5.fxml"));
+        primaryStage.setTitle("Mot Croisés");
+        primaryStage.setScene(new Scene(root, 280, 330));
         primaryStage.show();
     }
 

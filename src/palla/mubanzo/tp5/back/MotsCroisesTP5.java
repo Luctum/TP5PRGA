@@ -1,4 +1,4 @@
-package palla.mubanzo.tp5;
+package palla.mubanzo.tp5.back;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
