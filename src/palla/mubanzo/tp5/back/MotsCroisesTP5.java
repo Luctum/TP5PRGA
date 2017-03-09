@@ -21,7 +21,6 @@ public class MotsCroisesTP5 implements SpecifMotsCroises
             for (int col=1; col<=getLargeur(); col++)
             {
                 proposition.setCellule(lig,col,new SimpleStringProperty(" "));
-                setCaseNoire(lig, col, true);
             }
         }
     }

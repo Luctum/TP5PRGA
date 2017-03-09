@@ -26,26 +26,37 @@ public class ControllerTP5 {
         TextField modele = (TextField) monGridPane.getChildren().get(0);
         monGridPane.getChildren().clear();
 
-        for(int i = 1; i <= mc.getHauteur();i++){
-            for(int j = 1; j <= mc.getLargeur();j++){
+        for(int i = 1; i <= mc.getHauteur();i++) {
+            for (int j = 1; j <= mc.getLargeur(); j++) {
 
-                if(!mc.estCaseNoire(i,j)){
+                if (!mc.estCaseNoire(i, j)) {
                     TextField nouveau = new TextField();
                     //On click event
-                    nouveau.setOnMouseClicked((e)->{this.clicCase(e);});
+                    nouveau.setOnMouseClicked((e) -> {
+                        this.clicCase(e);
+                    });
+
 
                     //Binding de la saisie entre javafx et la grille de mots croisés
-                    nouveau.textProperty().bindBidirectional(mc.propositionProperty(i,j));
+                    nouveau.textProperty().bindBidirectional(mc.propositionProperty(i, j));
 
                     //Preferences des textfields
                     nouveau.setPrefWidth(modele.getPrefWidth());
                     nouveau.setPrefHeight(modele.getPrefHeight());
-                    for(Object cle : modele.getProperties().keySet())
-                    {
+                    for (Object cle : modele.getProperties().keySet()) {
                         nouveau.getProperties()
                                 .put(cle, modele.getProperties().get(cle));
                     }
-                    nouveau.setTooltip(new Tooltip(mc.getDefinition(i,j,true) +"(Horizontal) / "+mc.getDefinition(i,j,false)+"(Vertical)"));
+
+                    //Tooltip
+                    String horizDefinition = mc.getDefinition(i, j, true) != null ? mc.getDefinition(i, j, true) + " (Horizontal)" : "";
+                    String vertiDefinition = mc.getDefinition(i, j, false) != null ? mc.getDefinition(i, j, false) + " (Vertical)" : "";
+                    if (!horizDefinition.equals("") && !vertiDefinition.equals("")) {
+                        horizDefinition += " / ";
+                    }
+                    nouveau.setTooltip(new Tooltip(horizDefinition + "" + vertiDefinition));
+
+                    //Insertion du textfield dans le gridpane
                     //Attention ici c'est la colonne puis la ligne, et l'index est a 0 contrairement au reste
                     monGridPane.add(nouveau, j - 1, i - 1);
 
@@ -53,7 +64,6 @@ public class ControllerTP5 {
 
             }
         }
-        monGridPane.setGridLinesVisible(true);
     }
 
     //Prend tous les evenemnts au clique partout

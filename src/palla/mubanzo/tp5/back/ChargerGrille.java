@@ -16,14 +16,13 @@ public class ChargerGrille{
     }
 
     public static Connection connectionMySQL() throws SQLException{
-        String url = "jdbc:mysql://localhost/base_bousse";
+        String url = "jdbc:mysql://anteros.istic.univ-rennes1.fr/base_bousse";
         try{
             Class.forName("com.mysql.jdbc.Driver");
         }catch(ClassNotFoundException e){
             e.printStackTrace();
         }
         
-        return DriverManager.getConnection(url, "root", "");
     }
 
     public static MotsCroisesTP5 extraireBD(Connection connect, int grille){
